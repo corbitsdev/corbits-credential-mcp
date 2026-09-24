@@ -21,8 +21,8 @@ import type {
   HttpMediatedCredential,
 } from "@intx/types";
 
-import type { FetchLike } from "./fetch-like";
-import { mcpOriginPinnedFetch } from "./mcp-origin-pinned-fetch";
+import type { FetchLike } from "./fetch-like.js";
+import { mcpOriginPinnedFetch } from "./mcp-origin-pinned-fetch.js";
 
 /**
  * The stored-secret sentinel for a keyless MCP-server connection.

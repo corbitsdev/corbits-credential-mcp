@@ -3,7 +3,7 @@
 // never follow a 3xx (even to an allowlisted origin). Extra origins are
 // an explicit map keyed by the pinned origin — not a host suffix.
 
-import type { FetchLike } from "./fetch-like";
+import type { FetchLike } from "./fetch-like.js";
 
 /**
  * Additional first-hop origins a pinned MCP credential may call. Only

@@ -22,7 +22,7 @@
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && node -e \"const fs=require('fs'),path=require('path');const Q=String.fromCharCode(34);const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>{const p=path.join(d,e.name);return e.isDirectory()?walk(p):[p]});for(const f of walk('dist')){if(f.endsWith('.js')===false)continue;const parts=fs.readFileSync(f,'utf8').split('from '+Q);for(let i=1;i<parts.length;i++){const qi=parts[i].indexOf(Q);if(qi<0)continue;const spec=parts[i].slice(0,qi);if((spec.startsWith('./')||spec.startsWith('../'))&&spec.endsWith('.js')===false&&spec.endsWith('.json')===false){parts[i]=spec+'.js'+parts[i].slice(qi)}}fs.writeFileSync(f,parts.join('from '+Q))}\"",
+    "build": "tsc -p tsconfig.build.json",
     "prepack": "bun run build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
