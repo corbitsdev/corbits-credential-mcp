@@ -1,5 +1,19 @@
 # @corbits/credential-mcp
 
+> [!IMPORTANT]
+> This package moved to [`@corbits/credential-http`](https://github.com/corbitsdev/credential-http), which also covers `x-api-key`, raw `authorization` and custom headers. New code should use it. The plugin key, the Bearer shape and the sentinel value are unchanged, so stored credential rows need no migration. The built-in Canva origin allowance is gone: pass it as `extraOrigins`.
+>
+> | `@corbits/credential-mcp`                                       | `@corbits/credential-http`                                                                                                                                  |
+> | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> | `createMcpStreamableHttpCredentialProvider(opts?)`              | unchanged, plus `extraOrigins?`                                                                                                                             |
+> | `McpStreamableHttpCredentialProviderOptions`                    | `CredentialPresetOptions`                                                                                                                                   |
+> | `MCP_STREAMABLE_HTTP_PROVIDER_KEY`, `MCP_NO_TOKEN_SENTINEL`     | unchanged                                                                                                                                                   |
+> | `mcpOriginPinnedFetch({ pinnedOrigin, readToken, fetch? })`     | `createOriginPinnedFetch({ origin, header: "authorization", readValue, extraOrigins?, fetch? })`, where `readValue` returns `Bearer <token>` or `undefined` |
+> | `McpOriginPinnedFetchArgs`                                      | `OriginPinnedFetchOptions`                                                                                                                                  |
+> | `resolveMcpTargetUrl`, `assertMcpPinnedTarget`                  | removed; `createOriginPinnedFetch` does both                                                                                                                |
+> | `FetchLike`                                                     | import from `@intx/harness`                                                                                                                                 |
+> | Built-in `https://mcp.canva.com` → `https://canva.ai` allowance | `extraOrigins: { "https://mcp.canva.com": ["https://canva.ai"] }` on the provider, or `extraOrigins: ["https://canva.ai"]` on `createOriginPinnedFetch`     |
+
 An MCP streamable-HTTP `CredentialProvider` for Interchange: a
 tenant-connected MCP server authenticates with `authorization: Bearer
 <token>` when the person supplied a token, and with no `authorization`
